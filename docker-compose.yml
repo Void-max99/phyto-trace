@@ -1,0 +1,14 @@
+services:
+  phytotrace:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - PHYTOTRACE_CACHE=/cache/phytotrace
+    volumes:
+      - ./model:/app/model:ro
+      - phytotrace-cache:/cache/phytotrace
+    restart: unless-stopped
+
+volumes:
+  phytotrace-cache:

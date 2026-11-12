@@ -1,0 +1,40 @@
+# PhytoTrace configuration (TOML)
+# Edit values here; missing sections fall back to code defaults.
+
+[data]
+img_size = 224
+train_images = 5324
+test_images = 1328
+unseen_species_images = 9381
+unseen_species_count = 32
+
+[model]
+backbone_name = "mobilenetv2-12.onnx"
+onnx_opset = 13
+feature_dim = 1280
+threads = 2
+input_layout = "NHWC"
+color_space = "RGB"
+preprocessing = "rgb_0_to_255"
+output = "softmax_probabilities"
+
+[calibration]
+temperature = 2.38
+entropy_threshold = 0.1143
+confidence_threshold = 0.9538
+target_coverage = 0.8
+holdout_fraction = 0.1
+seed = 42
+thresholds_calibrated = true
+
+[evaluation]
+bootstrap_resamples = 1000
+bootstrap_seed = 42
+robustness_samples = 100
+robustness_seed = 42
+
+[app]
+host = "127.0.0.1"
+port = 5000
+debug = false
+max_content_length_mb = 16

@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "phytotrace"
+version = "2.1.0-s"
+description = "Uncertainty-aware plant disease recognition with calibrated abstention — production grade"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "void" }]
+license = { text = "MIT" }
+keywords = ["plant-disease", "onnx", "calibration", "uncertainty", "abstention"]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0", "rich>=13.0", "black", "ruff", "mypy"]
+web = ["flask>=3.0"]
+
+[project.scripts]
+phytotrace = "phytotrace.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["phytotrace*"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+norecursedirs = ["backup"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.mypy]
+python_version = "3.13"
+warn_return_any = true
+warn_unused_ignores = true
